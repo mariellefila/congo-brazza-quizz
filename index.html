@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Congo-Brazza Quizz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="logo.png" alt="Congo-Brazza Quizz" class="logo" />
+    </header>
+    <div class="ad ad-top">PUBLICITÉ</div>
+    <main>
+      <h1>Quiz : Congo-Brazzaville</h1>
+      <div id="menu"></div>
+      <div id="quiz"></div>
+      <p id="timer" class="timer"></p>
+      <p id="score" style="font-weight: bold"></p>
+    </main>
+    <div class="ad ad-bottom">PUBLICITÉ</div>
+  </div>
+  <script>
+    const allQuestions = {
+      "Géographie": [
+        { question: "Quelle est la capitale du Congo-Brazzaville ?", options: ["Pointe-Noire", "Kinshasa", "Brazzaville", "Owando"], answer: "Brazzaville" },
+        { question: "Quelle rivière sépare Brazzaville de Kinshasa ?", options: ["Oubangui", "Congo", "Sangha", "Alima"], answer: "Congo" },
+        { question: "Combien de départements compte le Congo ?", options: ["10", "12", "7", "15"], answer: "12" },
+        { question: "Quel océan borde le Congo-Brazzaville ?", options: ["Atlantique", "Pacifique", "Indien", "Arctique"], answer: "Atlantique" },
+        { question: "Quel est le plus grand département du Congo ?", options: ["Sangha", "Likouala", "Niari", "Plateaux"], answer: "Likouala" },
+        { question: "Quelle ville est un port important du Congo ?", options: ["Owando", "Pointe-Noire", "Dolisie", "Impfondo"], answer: "Pointe-Noire" },
+        { question: "La région des Plateaux se trouve :", options: ["Nord", "Sud", "Est", "Centre"], answer: "Centre" },
+        { question: "Quel pays n’a pas de frontière avec le Congo ?", options: ["Gabon", "RDC", "Angola", "Mali"], answer: "Mali" },
+        { question: "Quelle est la superficie approximative du Congo ?", options: ["342 000 km²", "500 000 km²", "700 000 km²", "900 000 km²"], answer: "342 000 km²" },
+        { question: "Quelle rivière traverse Owando ?", options: ["Kouyou", "Sangha", "Niari", "Cuvette"], answer: "Kouyou" },
+        { question: "Quelle ville est proche du Parc Nouabalé-Ndoki ?", options: ["Impfondo", "Pointe-Noire", "Ouesso", "Brazzaville"], answer: "Ouesso" },
+        { question: "Quelle île fluviale est située près de Brazzaville ?", options: ["Mbamou", "Likouala", "Alima", "Kouilou"], answer: "Mbamou" },
+        { question: "La région du Niari est riche en :", options: ["Or", "Fer", "Diamant", "Cuivre"], answer: "Fer" },
+        { question: "Quel fleuve est utilisé pour l’hydroélectricité ?", options: ["Niari", "Congo", "Sangha", "Oubangui"], answer: "Congo" },
+        { question: "Quelle est la deuxième ville du Congo ?", options: ["Dolisie", "Owando", "Pointe-Noire", "Makoua"], answer: "Pointe-Noire" },
+        { question: "Quelle zone est marécageuse ?", options: ["Likouala", "Niari", "Bouenza", "Lékoumou"], answer: "Likouala" },
+        { question: "Quel climat domine au Congo ?", options: ["Désertique", "Tempéré", "Équatorial", "Méditerranéen"], answer: "Équatorial" },
+        { question: "Quelle est la langue majoritaire du nord du Congo ?", options: ["Kikongo", "Lingala", "Téké", "Mboshi"], answer: "Mboshi" },
+        { question: "Où se situe la ville de Sibiti ?", options: ["Niari", "Lékoumou", "Cuvette", "Sangha"], answer: "Lékoumou" },
+        { question: "Quelle ville est au bord du fleuve Congo ?", options: ["Brazzaville", "Dolisie", "Owando", "Ouesso"], answer: "Brazzaville" }
+      ],
+      "Histoire": [
+        { question: "Le Congo-Brazzaville a obtenu son indépendance en :", options: ["1960", "1958", "1962", "1965"], answer: "1960" },
+        { question: "Quel président a proclamé la République populaire du Congo ?", options: ["Fulbert Youlou", "Denis Sassou Nguesso", "Alphonse Massamba-Débat", "Marien Ngouabi"], answer: "Marien Ngouabi" },
+        { question: "Le Congo était une colonie de quel pays ?", options: ["Belgique", "Portugal", "France", "Royaume-Uni"], answer: "France" },
+        { question: "Quel événement marquant a eu lieu en 1991 ?", options: ["Indépendance", "Guerre civile", "Conférence nationale", "Coup d'État"], answer: "Conférence nationale" },
+        { question: "Quel royaume historique existait avant la colonisation ?", options: ["Kongo", "Luba", "Songhaï", "Zulu"], answer: "Kongo" },
+        { question: "Quel est le nom du traité qui a officialisé la colonisation ?", options: ["Berlin", "Brazzaville", "Versailles", "Tordesillas"], answer: "Berlin" },
+        { question: "Qui fut le premier président du Congo indépendant ?", options: ["Fulbert Youlou", "Ngouabi", "Sassou", "Massamba"], answer: "Fulbert Youlou" },
+        { question: "Qui a été assassiné en 1977 ?", options: ["Massamba", "Ngouabi", "Youlou", "Kabila"], answer: "Ngouabi" },
+        { question: "Quelle conférence a marqué l’ouverture démocratique ?", options: ["Conférence de Brazzaville", "Conférence Nationale", "Conférence de Kinshasa", "Conférence de Niari"], answer: "Conférence Nationale" },
+        { question: "Le Parti Congolais du Travail a été fondé en :", options: ["1969", "1971", "1980", "1965"], answer: "1969" },
+        { question: "Quel pays a soutenu le régime marxiste ?", options: ["URSS", "USA", "France", "Chine"], answer: "URSS" },
+        { question: "Quelle guerre a éclaté en 1997 ?", options: ["Guerre civile", "Guerre avec la RDC", "Coup d’État", "Révolte populaire"], answer: "Guerre civile" },
+        { question: "Quel chef rebelle a mené les 'Ninjas' ?", options: ["Kolelas", "Sassou", "Youlou", "Tchicaya"], answer: "Kolelas" },
+        { question: "Qui a été président avant 1977 ?", options: ["Ngouabi", "Massamba-Débat", "Sassou", "Youlou"], answer: "Massamba-Débat" },
+        { question: "Quel historien célèbre a écrit sur le royaume Kongo ?", options: ["Joseph Ki-Zerbo", "Georges Balandier", "Fernand Braudel", "Pierre Savorgnan de Brazza"], answer: "Georges Balandier" },
+        { question: "Quelle colonie regroupait plusieurs pays d’Afrique ?", options: ["AOF", "AEF", "Union Française", "Afrique Occidentale"], answer: "AEF" },
+        { question: "Le Congo a été exploré par :", options: ["Livingstone", "Savorgnan de Brazza", "Stanley", "De Gaulle"], answer: "Savorgnan de Brazza" },
+        { question: "Quel est le surnom de la Conférence de 1991 ?", options: ["Conférence de la paix", "Conférence du salut national", "Conférence souveraine", "Conférence ouverte"], answer: "Conférence souveraine" },
+        { question: "Quand Denis Sassou Nguesso revient au pouvoir ?", options: ["1997", "1992", "2002", "1989"], answer: "1997" },
+        { question: "Qui a été ministre sous Youlou puis président ?", options: ["Massamba-Débat", "Ngouabi", "Kolelas", "Tchicaya"], answer: "Massamba-Débat" }
+      ],
+      "Gastronomie": [
+        { question: "Quel est un plat national du Congo ?", options: ["Poulet Moambe", "Ndolé", "Mafé", "Yassa"], answer: "Poulet Moambe" },
+        { question: "Le saka-saka est préparé avec :", options: ["Feuilles de manioc", "Riz", "Patate douce", "Feuilles d’aubergine"], answer: "Feuilles de manioc" },
+        { question: "Le foufou est une pâte à base de :", options: ["Manioc", "Mil", "Riz", "Maïs"], answer: "Manioc" },
+        { question: "Quelle viande est courante dans la cuisine congolaise ?", options: ["Porc", "Bœuf", "Cabri", "Poulet"], answer: "Cabri" },
+        { question: "Le liboké désigne :", options: ["Un mode de cuisson", "Une épice", "Un dessert", "Un plat frit"], answer: "Un mode de cuisson" },
+        { question: "Le pondu est souvent accompagné de :", options: ["Riz", "Foufou", "Plantains", "Bananes frites"], answer: "Foufou" },
+        { question: "Quelle boisson locale est courante ?", options: ["Bière de mil", "Vin de palme", "Thé à la menthe", "Karkadé"], answer: "Vin de palme" },
+        { question: "Les chenilles grillées sont appelées :", options: ["Mbungulu", "Mikate", "Makayabu", "Ngolo"], answer: "Mbungulu" },
+        { question: "Le poisson fumé est appelé :", options: ["Makayabu", "Mikate", "Pondu", "Moambe"], answer: "Makayabu" },
+        { question: "Les beignets congolais sont aussi appelés :", options: ["Mikate", "Maboké", "Ngulu", "Liboké"], answer: "Mikate" },
+        { question: "Le manioc peut être :", options: ["Bouilli, grillé ou fermenté", "Frit uniquement", "Cuit au four", "Toujours cru"], answer: "Bouilli, grillé ou fermenté" },
+        { question: "Le plat 'Moambe' signifie :", options: ["Sauce d’arachide", "Sauce tomate", "Feuilles vertes", "Épices"], answer: "Sauce d’arachide" },
+        { question: "Le 'nkumu' est :", options: ["Une herbe aromatique", "Un plat frit", "Un dessert", "Une sauce"], answer: "Une herbe aromatique" },
+        { question: "La boisson 'lotoko' est :", options: ["Alcool distillé localement", "Thé sucré", "Jus de fruit", "Eau minérale"], answer: "Alcool distillé localement" },
+        { question: "Les feuilles de patate douce sont appelées :", options: ["Saka-saka", "Pondu", "Ngai ngai", "Ntaba"], answer: "Ngai ngai" },
+        { question: "La spécialité à base de poissons enveloppés et cuits est :", options: ["Liboké", "Makayabu", "Moambe", "Ngai ngai"], answer: "Liboké" },
+        { question: "Quel féculent est souvent fermenté avant cuisson ?", options: ["Manioc", "Riz", "Mil", "Maïs"], answer: "Manioc" },
+        { question: "Le 'mbika' est :", options: ["Une sauce à base de graines", "Une épice", "Une boisson", "Un dessert"], answer: "Une sauce à base de graines" },
+        { question: "La viande séchée est souvent appelée :", options: ["Ngolo", "Mbisi", "Makoso", "Ntaba"], answer: "Ntaba" },
+        { question: "La chikwangue est faite à partir de :", options: ["Manioc fermenté", "Maïs", "Mil", "Avoine"], answer: "Manioc fermenté" }
+      ],
+      "Politique": [
+	  { question: "Qui est l'actuel président du Congo-Brazzaville (2024) ?", options: ["Denis Sassou Nguesso", "Pascal Lissouba", "André Milongo", "Fulbert Youlou"], answer: "Denis Sassou Nguesso" },
+	  { question: "Quel parti politique est actuellement au pouvoir ?", options: ["PCT", "UPADS", "UDR-Mwinda", "MCDDI"], answer: "PCT" },
+	  { question: "Quel président a été élu démocratiquement en 1992 ?", options: ["Pascal Lissouba", "Sassou Nguesso", "Youlou", "Ngouabi"], answer: "Pascal Lissouba" },
+	  { question: "Quel homme politique était surnommé 'le pasteur président' ?", options: ["Fulbert Youlou", "Kolelas", "Lissouba", "Massamba-Débat"], answer: "Fulbert Youlou" },
+	  { question: "Le multipartisme a été instauré après :", options: ["La Conférence nationale", "La guerre de 1997", "L'indépendance", "L’élection de 2002"], answer: "La Conférence nationale" },
+	  { question: "Qui a dirigé la transition après la Conférence nationale ?", options: ["André Milongo", "Denis Sassou Nguesso", "Lissouba", "Ngouabi"], answer: "André Milongo" },
+	  { question: "Quel leader politique a dirigé le MCDDI ?", options: ["Bernard Kolélas", "Youlou", "Milongo", "Tchicaya"], answer: "Bernard Kolélas" },
+	  { question: "Le PCT signifie :", options: ["Parti Congolais du Travail", "Parti Communiste du Tchad", "Parti Citoyen du Travail", "Programme Congolais pour Tous"], answer: "Parti Congolais du Travail" },
+	  { question: "Quel événement a ramené Sassou au pouvoir en 1997 ?", options: ["Une guerre civile", "Une élection", "Un référendum", "Un coup d’État militaire"], answer: "Une guerre civile" },
+	  { question: "Combien de mandats présidentiels peut effectuer un président selon la Constitution actuelle ?", options: ["Illimité", "2", "3", "1"], answer: "Illimité" },
+	  { question: "Qui était l’opposant principal en 2016 ?", options: ["Jean-Marie Michel Mokoko", "Kolelas", "Lissouba", "Youlou"], answer: "Jean-Marie Michel Mokoko" },
+	  { question: "Le Sénat est :", options: ["La chambre haute", "La chambre basse", "Le parlement local", "Le tribunal suprême"], answer: "La chambre haute" },
+	  { question: "Quel organisme supervise les élections ?", options: ["CNEI", "CEMI", "SNEC", "CENCO"], answer: "CNEI" },
+	  { question: "En 2002, Sassou a été élu avec :", options: ["plus de 85%", "moins de 50%", "70%", "60%"], answer: "plus de 85%" },
+	  { question: "Quelle ville est le siège de l’Assemblée Nationale ?", options: ["Brazzaville", "Pointe-Noire", "Dolisie", "Owando"], answer: "Brazzaville" },
+	  { question: "Quel ministère gère l’intérieur ?", options: ["Ministère de l'Intérieur et de la Décentralisation", "Ministère de l’État", "Ministère de l’Administration", "Ministère de la Défense"], answer: "Ministère de l'Intérieur et de la Décentralisation" },
+	  { question: "Quelle figure politique a été exilée en France ?", options: ["Pascal Lissouba", "Ngouabi", "Milongo", "Mokoko"], answer: "Pascal Lissouba" },
+	  { question: "Quelle année a vu une révision constitutionnelle majeure ?", options: ["2015", "1992", "2002", "1977"], answer: "2015" },
+	  { question: "Quel est le rôle du Conseil constitutionnel ?", options: ["Contrôler la conformité des lois", "Organiser les élections", "Négocier les lois", "Appliquer les peines"], answer: "Contrôler la conformité des lois" },
+	  { question: "La diplomatie congolaise est orientée vers :", options: ["La coopération Sud-Sud", "L’axe franco-belge", "L’Union soviétique", "Les pays arabes"], answer: "La coopération Sud-Sud" }
+	],
+      "Littérature": [
+		  { question: "Quel écrivain congolais a écrit 'Les petits garçons naissent aussi des étoiles' ?", options: ["Emmanuel Dongala", "Sony Labou Tansi", "Henri Lopes", "Tchicaya U Tam’si"], answer: "Emmanuel Dongala" },
+		  { question: "Auteur de 'La vie et demie' ?", options: ["Sony Labou Tansi", "Emmanuel Dongala", "Alain Mabanckou", "Jean Malonga"], answer: "Sony Labou Tansi" },
+		  { question: "Henri Lopes a été aussi :", options: ["Ambassadeur", "Militaire", "Médecin", "Peintre"], answer: "Ambassadeur" },
+		  { question: "Quel auteur a écrit 'Verre cassé' ?", options: ["Alain Mabanckou", "Henri Lopes", "Dongala", "Labou Tansi"], answer: "Alain Mabanckou" },
+		  { question: "Jean Malonga est connu pour ?", options: ["Coeur d’Aryenne", "Verre cassé", "La vie et demie", "Lumières de Pointe-Noire"], answer: "Coeur d’Aryenne" },
+		  { question: "Quel écrivain fut ministre de la culture ?", options: ["Henri Lopes", "Mabanckou", "Labou Tansi", "Dongala"], answer: "Henri Lopes" },
+		  { question: "Sony Labou Tansi a fondé :", options: ["Le Rocado Zulu Théâtre", "L’Union des écrivains congolais", "Le journal L’Etincelle", "L’Académie congolaise"], answer: "Le Rocado Zulu Théâtre" },
+		  { question: "Quelle ville est un décor récurrent de Mabanckou ?", options: ["Pointe-Noire", "Brazzaville", "Paris", "Dolisie"], answer: "Pointe-Noire" },
+		  { question: "Emmanuel Dongala a aussi enseigné :", options: ["Chimie", "Philosophie", "Droit", "Journalisme"], answer: "Chimie" },
+		  { question: "Quel prix littéraire a reçu Mabanckou ?", options: ["Renaudot", "Goncourt", "Nobel", "Fayard"], answer: "Renaudot" },
+		  { question: "Sony Labou Tansi est associé à quel mouvement ?", options: ["Littérature d’engagement", "Surréalisme", "Négritude", "Symbolisme"], answer: "Littérature d’engagement" },
+		  { question: "Quel roman évoque la diaspora congolaise à Paris ?", options: ["Verre cassé", "Mémoires de porc-épic", "Black Bazar", "Coeur d’Aryenne"], answer: "Black Bazar" },
+		  { question: "Quel écrivain congolais écrit aussi en anglais ?", options: ["Mabanckou", "Dongala", "Lopes", "Tansi"], answer: "Dongala" },
+		  { question: "‘Lumières de Pointe-Noire’ est une œuvre de :", options: ["Alain Mabanckou", "Dongala", "Tansi", "Malonga"], answer: "Alain Mabanckou" },
+		  { question: "Quelle thématique revient souvent chez les auteurs congolais ?", options: ["Dictature", "Science-fiction", "Romance", "Fantastique"], answer: "Dictature" },
+		  { question: "Quel poète a été actif dans les années 50 ?", options: ["Tchicaya U Tam’si", "Lopes", "Dongala", "Mabanckou"], answer: "Tchicaya U Tam’si" },
+		  { question: "Quel auteur est aussi connu pour ses poèmes ?", options: ["Tchicaya U Tam’si", "Malonga", "Dongala", "Lopes"], answer: "Tchicaya U Tam’si" },
+		  { question: "Quel roman est écrit comme un monologue intérieur ?", options: ["Verre cassé", "La vie et demie", "Black Bazar", "Coeur d’Aryenne"], answer: "Verre cassé" },
+		  { question: "Quel écrivain vit actuellement aux USA ?", options: ["Mabanckou", "Tansi", "Malonga", "Tam’si"], answer: "Mabanckou" },
+		  { question: "Le style de Dongala est souvent :", options: ["Satirique", "Lyrico-philosophique", "Historique", "Policier"], answer: "Lyrico-philosophique" }
+		]
+    };
+
+    let selectedQuestions = [];
+    let current = 0, score = 0, timerInterval = null, timeLeft = 30;
+    const menuDiv = document.getElementById("menu");
+    const quizDiv = document.getElementById("quiz");
+    const timerP = document.getElementById("timer");
+
+    function startMenu() {
+      quizDiv.innerHTML = "";
+      timerP.textContent = "";
+      document.getElementById("score").textContent = "";
+      menuDiv.innerHTML = "<h2>Choisissez une catégorie :</h2>";
+      for (const category in allQuestions) {
+        const btn = document.createElement("button");
+        btn.textContent = category;
+        btn.style.margin = "5px";
+        btn.onclick = () => startQuiz(category);
+        menuDiv.appendChild(btn);
+      }
+      const btnRandom = document.createElement("button");
+      btnRandom.textContent = "Aléatoire";
+      btnRandom.style.margin = "5px";
+      btnRandom.onclick = () => startQuiz("Random");
+      menuDiv.appendChild(btnRandom);
+    }
+
+    function startQuiz(category) {
+      menuDiv.innerHTML = "";
+      score = 0;
+      current = 0;
+      selectedQuestions = Object.values(allQuestions).flat();
+      shuffleArray(selectedQuestions);
+	  selectedQuestions = selectedQuestions.slice(0, 10);
+      showQuestion();
+    }
+
+    function showQuestion() {
+      clearInterval(timerInterval);
+      timeLeft = 30;
+      timerP.textContent = `Temps restant : ${timeLeft} secondes`;
+      const q = selectedQuestions[current];
+      quizDiv.innerHTML = "";
+      const title = document.createElement("h3");
+      title.textContent = q.question;
+      quizDiv.appendChild(title);
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.style.margin = "5px";
+        btn.onclick = () => checkAnswer(option, btn);
+        quizDiv.appendChild(btn);
+      });
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerP.textContent = `Temps restant : ${timeLeft} secondes`;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          showCorrectAnswer(null);
+        }
+      }, 1000);
+    }
+
+    function checkAnswer(selected, clickedBtn) {
+      clearInterval(timerInterval);
+      const q = selectedQuestions[current];
+      const buttons = quizDiv.querySelectorAll("button");
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === q.answer) {
+          btn.style.backgroundColor = "lightgreen";
+        } else if (btn === clickedBtn) {
+          btn.style.backgroundColor = "lightcoral";
+        }
+      });
+      if (selected === q.answer) score++;
+      setTimeout(() => {
+        current++;
+        if (current < selectedQuestions.length) {
+          showQuestion();
+        } else {
+          showFinalScore();
+        }
+      }, 1500);
+    }
+
+    function showCorrectAnswer() {
+      const q = selectedQuestions[current];
+      const buttons = quizDiv.querySelectorAll("button");
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === q.answer) {
+          btn.style.backgroundColor = "lightgreen";
+        } else {
+          btn.style.backgroundColor = "lightcoral";
+        }
+      });
+      setTimeout(() => {
+        current++;
+        if (current < selectedQuestions.length) {
+          showQuestion();
+        } else {
+          showFinalScore();
+        }
+      }, 1500);
+    }
+
+    function showFinalScore() {
+      quizDiv.innerHTML = "<h2>Quiz terminé !</h2>";
+      timerP.textContent = "";
+      document.getElementById("score").textContent = `Score : ${score} / ${selectedQuestions.length}`;
+      const restartBtn = document.createElement("button");
+      restartBtn.textContent = "Rejouer";
+      restartBtn.style.marginTop = "10px";
+      restartBtn.onclick = startMenu;
+      quizDiv.appendChild(restartBtn);
+    }
+
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    startMenu();
+  </script>
+</body>
+</html>
