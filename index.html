@@ -5,13 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Congo-Brazza Quizz</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .ad-bottom {      
+      animation: pulse 2s infinite;
+    }
+
+    .ad-bottom img {
+      width: 200px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .ad-bottom img:hover {
+      transform: scale(1.1) rotate(-2deg);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <header>
       <img src="logo.png" alt="Congo-Brazza Quizz" class="logo" />
     </header>
-    <div class="ad ad-top">PUBLICITÉ</div>
     <main>
       <h1>Quiz : Congo-Brazzaville</h1>
       <div id="menu"></div>
@@ -19,7 +40,26 @@
       <p id="timer" class="timer"></p>
       <p id="score" style="font-weight: bold"></p>
     </main>
-    <div class="ad ad-bottom">PUBLICITÉ</div>
+    <div class="ad ad-bottom">
+      <a href="https://www.facebook.com/share/15gqQNoAWR/" target="_blank">
+        <img id="adImage" src="reseau120bannere.jpg" alt="Publicité">
+      </a>
+    </div>
+
+    <script>
+      const adImages = ["reseau120logo.jpg", "reseau120bannere.jpg"];
+      let currentAd = 0;
+
+      setInterval(() => {
+        currentAd = (currentAd + 1) % adImages.length;
+        const img = document.getElementById("adImage");
+        img.style.opacity = 0;
+        setTimeout(() => {
+          img.src = adImages[currentAd];
+          img.style.opacity = 1;
+        }, 300);
+      }, 5000);
+    </script>
   </div>
   <script>
     const allQuestions = {
