@@ -31,7 +31,7 @@
 <body>
   <div class="container">
     <header>
-      <img src="logo.png" alt="Congo-Brazza Quizz" class="logo" />
+      <img src="bannere.jpg" alt="Congo-Brazza Quizz" class="logo" />
     </header>
     <main>
       <h1>Quiz : Congo-Brazzaville</h1>
@@ -47,18 +47,25 @@
     </div>
 
     <script>
-      const adImages = ["reseau120logo.jpg", "reseau120bannere.jpg"];
-      let currentAd = 0;
+      const adImages = [
+    { src: "reseau120bannere.jpg", link: "https://www.facebook.com/share/15gqQNoAWR/" },
+    { src: "publicite02.jpg", link: "https://www.facebook.com/share/1E9R3oiV4M/" }
+  ];
 
-      setInterval(() => {
-        currentAd = (currentAd + 1) % adImages.length;
-        const img = document.getElementById("adImage");
-        img.style.opacity = 0;
-        setTimeout(() => {
-          img.src = adImages[currentAd];
-          img.style.opacity = 1;
-        }, 300);
-      }, 5000);
+  let currentAd = 0;
+
+  setInterval(() => {
+    currentAd = (currentAd + 1) % adImages.length;
+    const img = document.getElementById("adImage");
+    const link = document.querySelector(".ad-bottom a");
+    
+    img.style.opacity = 0;
+    setTimeout(() => {
+      img.src = adImages[currentAd].src;
+      link.href = adImages[currentAd].link;
+      img.style.opacity = 1;
+    }, 300);
+  }, 5000);
     </script>
   </div>
   <script>
