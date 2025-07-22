@@ -210,7 +210,13 @@
       menuDiv.innerHTML = "";
       score = 0;
       current = 0;
-      selectedQuestions = Object.values(allQuestions).flat();
+
+      if (category === "Random") {
+		  selectedQuestions = Object.values(allQuestions).flat();
+		} else {
+		  selectedQuestions = allQuestions[category].slice();
+		}
+
       shuffleArray(selectedQuestions);
 	  selectedQuestions = selectedQuestions.slice(0, 10);
       showQuestion();
