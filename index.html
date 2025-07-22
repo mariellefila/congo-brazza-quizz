@@ -210,6 +210,7 @@
       menuDiv.innerHTML = "";
       score = 0;
       current = 0;
+	  selectedCategory = category;
 
       if (category === "Random") {
 		  selectedQuestions = Object.values(allQuestions).flat();
@@ -309,6 +310,39 @@
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
     }
+	
+	function showFinalScore() {
+		  quizDiv.innerHTML = "<h2>Quiz terminé !</h2>";
+		  timerP.textContent = "";
+		  document.getElementById("score").textContent = `Score : ${score} / ${selectedQuestions.length}`;
+
+		  const restartBtn = document.createElement("button");
+		  restartBtn.textContent = "Rejouer";
+		  restartBtn.style.marginTop = "10px";
+		  restartBtn.onclick = startMenu;
+		  quizDiv.appendChild(restartBtn);
+
+		  const shareBtn = document.createElement("button");
+		  shareBtn.textContent = "Partager sur Facebook";
+		  shareBtn.style.marginTop = "10px";
+		  shareBtn.style.marginLeft = "10px";
+		  shareBtn.style.backgroundColor = "#1877F2";
+		  shareBtn.style.color = "white";
+		  shareBtn.style.border = "none";
+		  shareBtn.style.padding = "10px";
+		  shareBtn.style.borderRadius = "5px";
+		  shareBtn.style.cursor = "pointer";
+
+		  shareBtn.onclick = () => {
+			const url = encodeURIComponent("http://congobrazza-quiz.com/");
+			const label = selectedCategory === "Random" ? "en mode aléatoire" : `dans la catégorie "${selectedCategory}"`;
+			const text = encodeURIComponent(`J'ai obtenu un score de ${score} / ${selectedQuestions.length} au quiz Congo-Brazzaville ${label} ! 🔥 Teste-toi aussi sur http://congobrazza-quiz.com/`);
+			const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+			window.open(fbUrl, "_blank");
+		  };
+
+		  quizDiv.appendChild(shareBtn);
+		}
 
     startMenu();
   </script>
