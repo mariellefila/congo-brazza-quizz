@@ -42,7 +42,7 @@
     </main>
     <div class="ad ad-bottom">
 		<h3>Pour votre publicité sur le site &nbsp;<a href="https://www.facebook.com/profile.php?id=100063648157074" target="_blank">cliquez ici *</a></h3>
-      <a href="https://www.facebook.com/share/15gqQNoAWR/" target="_blank">
+      <a id="adLink" href="https://www.facebook.com/share/15gqQNoAWR/" target="_blank">
         <img id="adImage" src="reseau120bannere.jpg" alt="Publicité">
       </a>
 	  <br/>
@@ -62,7 +62,7 @@
   setInterval(() => {
     currentAd = (currentAd + 1) % adImages.length;
     const img = document.getElementById("adImage");
-    const link = document.querySelector(".ad-bottom a");
+    const link = document.getElementById("adLink");
     const categoryTitle = document.getElementById("categoryTitle");
 	
     img.style.opacity = 0;
