@@ -34,7 +34,7 @@
       <img src="bannere.jpg" alt="Congo-Brazza Quizz" class="logo" />
     </header>
     <main>
-      <h1>Quiz : Congo-Brazzaville</h1>
+      <h1 id="categoryTitle"></h1>
       <div id="menu"></div>
       <div id="quiz"></div>
       <p id="timer" class="timer"></p>
@@ -63,7 +63,8 @@
     currentAd = (currentAd + 1) % adImages.length;
     const img = document.getElementById("adImage");
     const link = document.querySelector(".ad-bottom a");
-    
+    const categoryTitle = document.getElementById("categoryTitle");
+	
     img.style.opacity = 0;
     setTimeout(() => {
       img.src = adImages[currentAd].src;
@@ -120,26 +121,48 @@
         { question: "Qui a été ministre sous Youlou puis président ?", options: ["Massamba-Débat", "Ngouabi", "Kolelas", "Tchicaya"], answer: "Massamba-Débat" }
       ],
       "Gastronomie": [
-        { question: "Quel est un plat national du Congo ?", options: ["Poulet Moambe", "Ndolé", "Mafé", "Yassa"], answer: "Poulet Moambe" },
-        { question: "Le saka-saka est préparé avec :", options: ["Feuilles de manioc", "Riz", "Patate douce", "Feuilles d’aubergine"], answer: "Feuilles de manioc" },
-        { question: "Le foufou est une pâte à base de :", options: ["Manioc", "Mil", "Riz", "Maïs"], answer: "Manioc" },
-        { question: "Quelle viande est courante dans la cuisine congolaise ?", options: ["Porc", "Bœuf", "Cabri", "Poulet"], answer: "Cabri" },
-        { question: "Le liboké désigne :", options: ["Un mode de cuisson", "Une épice", "Un dessert", "Un plat frit"], answer: "Un mode de cuisson" },
-        { question: "Le pondu est souvent accompagné de :", options: ["Riz", "Foufou", "Plantains", "Bananes frites"], answer: "Foufou" },
-        { question: "Quelle boisson locale est courante ?", options: ["Bière de mil", "Vin de palme", "Thé à la menthe", "Karkadé"], answer: "Vin de palme" },
-        { question: "Les chenilles grillées sont appelées :", options: ["Mbungulu", "Mikate", "Makayabu", "Ngolo"], answer: "Mbungulu" },
-        { question: "Le poisson fumé est appelé :", options: ["Makayabu", "Mikate", "Pondu", "Moambe"], answer: "Makayabu" },
-        { question: "Les beignets congolais sont aussi appelés :", options: ["Mikate", "Maboké", "Ngulu", "Liboké"], answer: "Mikate" },
-        { question: "Le manioc peut être :", options: ["Bouilli, grillé ou fermenté", "Frit uniquement", "Cuit au four", "Toujours cru"], answer: "Bouilli, grillé ou fermenté" },
-        { question: "Le plat 'Moambe' signifie :", options: ["Sauce d’arachide", "Sauce tomate", "Feuilles vertes", "Épices"], answer: "Sauce d’arachide" },
-        { question: "Le 'nkumu' est :", options: ["Une herbe aromatique", "Un plat frit", "Un dessert", "Une sauce"], answer: "Une herbe aromatique" },
-        { question: "La boisson 'lotoko' est :", options: ["Alcool distillé localement", "Thé sucré", "Jus de fruit", "Eau minérale"], answer: "Alcool distillé localement" },
-        { question: "Les feuilles de patate douce sont appelées :", options: ["Saka-saka", "Pondu", "Ngai ngai", "Ntaba"], answer: "Ngai ngai" },
-        { question: "La spécialité à base de poissons enveloppés et cuits est :", options: ["Liboké", "Makayabu", "Moambe", "Ngai ngai"], answer: "Liboké" },
-        { question: "Quel féculent est souvent fermenté avant cuisson ?", options: ["Manioc", "Riz", "Mil", "Maïs"], answer: "Manioc" },
-        { question: "Le 'mbika' est :", options: ["Une sauce à base de graines", "Une épice", "Une boisson", "Un dessert"], answer: "Une sauce à base de graines" },
-        { question: "La viande séchée est souvent appelée :", options: ["Ngolo", "Mbisi", "Makoso", "Ntaba"], answer: "Ntaba" },
-        { question: "La chikwangue est faite à partir de :", options: ["Manioc fermenté", "Maïs", "Mil", "Avoine"], answer: "Manioc fermenté" }
+						{"question": "Dans quelle région du Congo-Brazzaville prépare-t-on souvent la sauce gnetum (feuilles de koko) ?", "options": ["Niari", "Cuvette", "Lekoumou", "Plateaux"], "answer": "Lekoumou"},
+						{"question": "Quel plat est considéré comme emblématique au Congo-Brazzaville ?", "options": ["Poulet Moambe", "Ndolé", "Mafé", "Yassa"], "answer": "Poulet Moambe"},
+						{"question": "Le saka-saka est préparé avec :", "options": ["Feuilles de manioc", "Feuilles de patate douce", "Feuilles de taro", "Feuilles de goyavier"], "answer": "Feuilles de manioc"},
+						{"question": "Le foufou congolais est traditionnellement à base de :", "options": ["Manioc", "Mil", "Riz", "Maïs"], "answer": "Manioc"},
+						{"question": "Quelle viande est couramment consommée dans les villages congolais ?", "options": ["Cabri", "Porc", "Bœuf", "Lapin"], "answer": "Cabri"},
+						{"question": "Le liboké désigne :", "options": ["Un plat cuit à l’étouffée dans des feuilles", "Un dessert à la banane", "Un beignet frit", "Une soupe pimentée"], "answer": "Un plat cuit à l’étouffée dans des feuilles"},
+						{"question": "Le saka-saka est généralement accompagné de :", "options": ["Foufou", "Riz", "Plantains", "Bananes frites"], "answer": "Foufou"},
+						{"question": "Quelle boisson artisanale est très populaire dans les campagnes congolaises ?", "options": ["Vin de palme", "Bière de mil", "Thé à la menthe", "Jus de tamarin"], "answer": "Vin de palme"},
+						{"question": "Les beignets sucrés congolais sont appelés :", "options": ["Mikate", "Maboké", "Konda", "Ngulu"], "answer": "Mikate"},
+						{"question": "Le manioc est consommé sous plusieurs formes, sauf :", "options": ["Cru", "Fermenté", "Bouilli", "Grillé"], "answer": "Cru"},
+						{"question": "La moambe est une sauce préparée à base de :", "options": ["Graines de palme", "Arachide", "Feuilles vertes", "Épices"], "answer": "Graines de palme"},
+						{"question": "Le 'mfumbu' est :", "options": ["Une herbe locale utilisée en cuisine", "Un poisson fumé", "Une boisson artisanale", "Un type de manioc"], "answer": "Une herbe locale utilisée en cuisine"},
+						{"question": "Les feuilles de patate douce sont appelées :", "options": ["Ngai ngai", "Saka-saka", "Liboké", "Pondu"], "answer": "Ngai ngai"},
+						{"question": "Quel plat est préparé avec du poisson enveloppé dans des feuilles puis grillé ou cuit à la vapeur ?", "options": ["Liboké", "Makayabu", "Ngai ngai", "Moambe"], "answer": "Liboké"},
+						{"question": "Quel féculent est souvent fermenté pour la préparation de la chikwangue ?", "options": ["Manioc", "Maïs", "Mil", "Riz"], "answer": "Manioc"},
+						{"question": "Le 'mbika', souvent utilisé dans les sauces, provient de :", "options": ["Graines de courge", "Graines de palme", "Graines de tournesol", "Noix de cajou"], "answer": "Graines de courge"},
+						{"question": "La viande séchée consommée au Congo est appelée :", "options": ["Ntaba", "Mbisi", "Makoso", "Ngulu"], "answer": "Ntaba"},
+						{"question": "La chikwangue est :", "options": ["Une pâte de manioc fermentée emballée dans des feuilles", "Une galette de maïs", "Une boule de riz pimentée", "Une soupe de légumes"], "answer": "Une pâte de manioc fermentée emballée dans des feuilles"},
+						{"question": "Quel est le plat national emblématique du Congo-Brazzaville ?", "options": ["Riz jollof", "Poulet à la moambe", "Ndolé", "Attiéké"], "answer": "Poulet à la moambe"},
+						{"question": "Quel est le nom du plat à base de pâte de manioc fermentée souvent consommée avec des sauces ?", "options": ["Couscous", "Tô", "Foufou", "Alloco"], "answer": "Foufou"},
+						{"question": "Quel est l’autre nom donné à la pâte de manioc au Congo ?", "options": ["Gari", "Amala", "Chikwangue (ou kwanga)", "Koki"], "answer": "Chikwangue (ou kwanga)"},
+						{"question": "Quel plat congolais est fait à base de feuilles de manioc pilées et cuites ?", "options": ["Eru", "Saka-saka (ou pondu)", "Kédjénou", "Ndolé"], "answer": "Saka-saka (ou pondu)"},
+						{"question": "Comment appelle-t-on le poisson salé et séché utilisé dans de nombreuses sauces congolaises ?", "options": ["Tilapia", "Mbika", "Makayabu", "Ngolo"], "answer": "Makayabu"},
+						{"question": "Quelle huile est typique dans la préparation des plats traditionnels congolais ?", "options": ["Huile d’olive", "Huile de tournesol", "Huile de palme", "Beurre clarifié"], "answer": "Huile de palme"},
+						{"question": "Quel tubercule est très consommé au Congo, souvent bouilli ou pilé ?", "options": ["Pomme de terre", "Manioc", "Carotte", "Taro"], "answer": "Manioc"},
+						{"question": "Quelle légumineuse est à la base de nombreuses sauces congolaises ?", "options": ["Lentilles", "Arachide (cacahuète)", "Haricots rouges", "Pois chiches"], "answer": "Arachide (cacahuète)"},
+						{"question": "Quel aliment accompagne souvent la sauce gombo au Congo ?", "options": ["Riz", "Foufou", "Semoule", "Attiéké"], "answer": "Foufou"},
+						{"question": "Quelle céréale est utilisée pour faire la bouillie populaire au petit-déjeuner ?", "options": ["Riz", "Maïs", "Blé", "Millet"], "answer": "Maïs"},
+						{"question": "Quel plat est généralement servi lors des fêtes et cérémonies ?", "options": ["Couscous royal", "Poulet à la moambe avec foufou", "Yassa au poulet", "Riz gras"], "answer": "Poulet à la moambe avec foufou"},
+						{"question": "Comment appelle-t-on les feuilles de manioc cuites à la vapeur dans des feuilles ?", "options": ["Koki", "Mbongo", "Mfumbwa", "Chikwangue"], "answer": "Mfumbwa"},
+						{"question": "Quelle boisson alcoolisée traditionnelle est issue de la fermentation de la sève du palmier ?", "options": ["Bissap", "Vin rouge", "Malafu (vin de palme)", "Tequila"], "answer": "Malafu (vin de palme)"},
+						{"question": "Quelle boisson non alcoolisée à base de racines est populaire au Congo ?", "options": ["Jus de mangue", "Jus de gingembre", "Jus de citron", "Jus de bissap"], "answer": "Jus de gingembre"},
+						{"question": "Quel fruit africain est violet, gras et souvent grillé ou bouilli ?", "options": ["Mangue", "Safou (prune africaine)", "Corossol", "Goyave"], "answer": "Safou (prune africaine)"},
+						{"question": "Quel dessert est préparé à base de bananes plantains frites ?", "options": ["Beignets", "Aloko (bananes plantains frites)", "Croquettes", "Chinchin"], "answer": "Aloko (bananes plantains frites)"},
+						{"question": "Quel aliment est souvent utilisé pour faire une confiserie sucrée avec du sucre ?", "options": ["Farine de manioc", "Noix de coco", "Arachide (nougat d’arachide)", "Riz soufflé"], "answer": "Arachide (nougat d’arachide)"},
+						{"question": "Quel condiment est très utilisé pour relever les sauces au Congo ?", "options": ["Piment", "Cube Maggi ou piment", "Curry", "Safran"], "answer": "Cube Maggi ou piment"},
+						{"question": "Quel fruit est souvent séché pour être consommé ou utilisé en infusion au Congo ?", "options": ["Papaye", "Hibiscus (bissap)", "Tomate", "Pomme"], "answer": "Hibiscus (bissap)"},
+						{"question": "Quelle est la particularité du tswi Téké ?", "options": ["C’est un thé sucré", "C’est un alcool fort", "C’est une pâte rouge acide faite à partir d’un fruit local", "C’est un jus de gingembre"], "answer": "C’est une pâte rouge acide faite à partir d’un fruit local"},
+						{"question": "Dans quel contenant est traditionnellement servi le tswi Téké ?", "options": ["Une bouteille en verre", "Une feuille fraîche repliée à la main", "Un bol en calebasse", "Un sachet en plastique"], "answer": "Une feuille fraîche repliée à la main"},
+						{"question": "Quel est le goût caractéristique du tswi Téké ?", "options": ["Doux et sucré", "Aigre ou acide", "Amer et piquant", "Salé"], "answer": "Aigre ou acide"},
+						{"question": "Le tswi Téké est associé principalement à quel peuple ?", "options": ["Mbochi", "Vili", "Téké", "Bembé"], "answer": "Téké"},
+						{"question": "Quel est le rôle culturel du tswi Téké ?", "options": ["Utilisé dans les compétitions sportives", "Servi lors de rites, cérémonies ou comme rafraîchissement traditionnel", "Utilisé comme carburant", "Produit d’exportation commerciale"], "answer": "Servi lors de rites, cérémonies ou comme rafraîchissement traditionnel"},
       ],
       "Politique": [
 	  { question: "Qui est l'actuel président du Congo-Brazzaville (2024) ?", options: ["Denis Sassou Nguesso", "Pascal Lissouba", "André Milongo", "Fulbert Youlou"], answer: "Denis Sassou Nguesso" },
@@ -166,7 +189,7 @@
   { question: "Qui est l’auteur du roman La vie et demie ?", options: ["Henri Lopes", "Sony Labou Tansi", "Alain Mabanckou", "Tchicaya U Tam’si"], answer: "Sony Labou Tansi" },
   { question: "Quel écrivain congolais a reçu le Grand Prix de la francophonie de l’Académie française en 2012 ?", options: ["Emmanuel Dongala", "Henri Lopes", "Alain Mabanckou", "Jean-Baptiste Tati Loutard"], answer: "Alain Mabanckou" },
   { question: "Quel est le titre du roman d’Alain Mabanckou qui se déroule dans un bar appelé \"Le Crédit a voyagé\" ?", options: ["Verre Cassé", "Mémoires de porc-épic", "Bleu-Blanc-Rouge", "Petit Piment"], answer: "Verre Cassé" },
-  { question: "Qui a écrit Les sept solitudes de Lorsa Lopez ?", options: ["Sony Labou Tansi", "Tchicaya U Tam’si", "Henri Lopes", "Alain Mabanckou"], answer: "Henri Lopes" },
+  { question: "Qui a écrit Les sept solitudes de Lorsa Lopez ?", options: ["Sony Labou Tansi", "Tchicaya U Tam’si", "Henri Lopes", "Alain Mabanckou"], answer: "Sony Labou Tansi" },
   { question: "Quel écrivain a fondé le théâtre de Rocado Zulu à Brazzaville ?", options: ["Sony Labou Tansi", "Guy Menga", "Lassy Mbouity", "Emmanuel Dongala"], answer: "Sony Labou Tansi" },
   { question: "Quel genre littéraire a été fortement influencé par les œuvres de Sony Labou Tansi ?", options: ["La poésie négritude", "Le théâtre politique", "Le roman historique", "Le conte initiatique"], answer: "Le théâtre politique" },
   { question: "Quel auteur congolais mêle humour, satire et critique sociale dans ses romans contemporains ?", options: ["Henri Lopes", "Alain Mabanckou", "Emmanuel Dongala", "Tati Loutard"], answer: "Alain Mabanckou" },
@@ -193,6 +216,7 @@
     const timerP = document.getElementById("timer");
 
     function startMenu() {
+	  categoryTitle.innerHTML = "Quiz : Congo-Brazzaville";
       quizDiv.innerHTML = "";
       timerP.textContent = "";
       document.getElementById("score").textContent = "";
@@ -216,6 +240,7 @@
       score = 0;
       current = 0;
 	  selectedCategory = category;
+	  categoryTitle.innerHTML = "Quiz : " + category;
 
       if (category === "Random") {
 		  selectedQuestions = Object.values(allQuestions).flat();
