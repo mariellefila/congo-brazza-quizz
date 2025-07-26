@@ -583,12 +583,13 @@
       score = 0;
       current = 0;
 	  selectedCategory = category;
-	  categoryTitle.innerHTML = "Quiz : " + category;
-
+	  
       if (category === "Random") {
+			categoryTitle.innerHTML = "Quiz : Aléatoire";
 		  selectedQuestions = Object.values(allQuestions).flat();
 		} else {
-		  selectedQuestions = allQuestions[category].slice();
+			categoryTitle.innerHTML = "Quiz : " + category;
+			selectedQuestions = allQuestions[category].slice();
 		}
 
       shuffleArray(selectedQuestions);
