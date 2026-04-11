@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Congo-Brazza Quizz</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .ad-bottom {      
-      animation: pulse 2s infinite;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Congo-Brazza Quizz</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .ad-bottom {
+            animation: pulse 2s infinite;
+        }
 
-    .ad-bottom img {
-      width: 200px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease-in-out;
-    }
+            .ad-bottom img {
+                width: 200px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.3);
+                transition: transform 0.3s ease-in-out;
+            }
 
-    .ad-bottom img:hover {
-      transform: scale(1.1) rotate(-2deg);
-    }
+                .ad-bottom img:hover {
+                    transform: scale(1.1) rotate(-2deg);
+                }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-  </style>
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="bannere.jpg" alt="Congo-Brazza Quizz" class="logo" />
-    </header>
-    <main>
-      <h1 id="categoryTitle"></h1>
-      <div id="menu"></div>
-      <div id="quiz"></div>
-      <p id="timer" class="timer"></p>
-      <p id="score" style="font-weight: bold"></p>
-    </main>
-    <div class="ad ad-bottom">
-		<h3>Pour votre publicité sur le site &nbsp;<a href="https://www.facebook.com/profile.php?id=100063648157074" target="_blank">cliquez ici *</a></h3>
-      <a id="adLink" href="https://www.facebook.com/share/15gqQNoAWR/" target="_blank">
-        <img id="adImage" src="reseau120bannere.jpg" alt="Publicité">
-      </a>
-	  <br/>
-	  <hr/>
-	  <cite>* pour voir afficher votre publicité sur notre site, vous pouvez nous envoyer un message depuis notre page Facebook</cite>
-    </div>
+    <div class="container">
+        <header>
+            <img src="bannere.jpg" alt="Congo-Brazza Quizz" class="logo" />
+        </header>
+        <main>
+            <h1 id="categoryTitle"></h1>
+            <div id="menu"></div>
+            <div id="quiz"></div>
+            <p id="timer" class="timer"></p>
+            <p id="score" style="font-weight: bold"></p>
+        </main>
+        <div class="ad ad-bottom">
+            <h3>Pour votre publicité sur le site &nbsp;<a href="https://www.facebook.com/profile.php?id=100063648157074" target="_blank">cliquez ici *</a></h3>
+            <a id="adLink" href="https://www.facebook.com/share/15gqQNoAWR/" target="_blank">
+                <img id="adImage" src="reseau120bannere.jpg" alt="Publicité">
+            </a>
+            <br />
+            <hr />
+            <cite>* pour voir afficher votre publicité sur notre site, vous pouvez nous envoyer un message depuis notre page Facebook</cite>
+        </div>
 
-    <script>
+        <script>
       const adImages = [
     { src: "reseau120bannere.jpg", link: "https://www.facebook.com/share/p/1CrPDJFjfo/" },
     { src: "publicite02.jpg", link: "https://www.facebook.com/share/1E9R3oiV4M/" },
@@ -64,7 +72,7 @@
     const img = document.getElementById("adImage");
     const link = document.getElementById("adLink");
     const categoryTitle = document.getElementById("categoryTitle");
-	
+
     img.style.opacity = 0;
     setTimeout(() => {
       img.src = adImages[currentAd].src;
@@ -72,9 +80,9 @@
       img.style.opacity = 1;
     }, 300);
   }, 5000);
-    </script>
-  </div>
-  <script>
+        </script>
+    </div>
+    <script>
     const allQuestions = {
 		"Géographie": [
 						  {
@@ -726,9 +734,57 @@
 			"question": "Quel thème majeur traverse tout le récit ?",
 			"options": ["L’amour de la nature", "Les luttes politiques et tribales", "La cuisine traditionnelle", "La vie des étudiants en Europe"],
 			"answer": "Les luttes politiques et tribales"
-		  }
-
-		  
+		  },
+         {
+        "question": "Quelle est l’une des grandes thématiques du roman les cancres heureux ?",
+        "options": [
+            "La réussite scolaire classique",
+            "La critique du système social et politique",
+            "La vie rurale traditionnelle",
+            "Le développement technologique"
+        ],
+        "answer": "La critique du système social et politique"
+    },
+    {
+        "question": "Dans le roman les cancres heureux, que représentent les “cancres” ?",
+        "options": [
+            "Des élèves paresseux",
+            "Des jeunes marginalisés par le système",
+            "Des criminels organisés",
+            "Des étudiants étrangers"
+        ],
+        "answer": "Des jeunes marginalisés par le système"
+    },
+    {
+        "question": "Dans le roman les cancres heureux, pourquoi les personnages sont-ils qualifiés de “heureux” ?",
+        "options": [
+            "Parce qu’ils réussissent financièrement",
+            "Parce qu’ils vivent sans contraintes",
+            "Par ironie face à un système qu’ils rejettent",
+            "Parce qu’ils sont inconscients"
+        ],
+        "answer": "Par ironie face à un système qu’ils rejettent"
+    },
+    {
+        "question": "Dans le roman les cancres heureux, quel type de société est décrit ?",
+        "options": [
+            "Une société stable et équitable",
+            "Une société utopique",
+            "Une société marquée par la corruption et les inégalités",
+            "Une société en pleine prospérité"
+        ],
+        "answer": "Une société marquée par la corruption et les inégalités"
+    },
+    {
+        "question": "Dans le roman les cancres heureux, quelle est l’attitude dominante des jeunes face au système ?",
+        "options": [
+            "Une adhésion totale",
+            "Une révolte organisée",
+            "Une adaptation mêlée de désillusion",
+            "Une ignorance complète"
+        ],
+        "answer": "Une adaptation mêlée de désillusion"
+    }
 ],
 "Tourisme": [
   {
@@ -1596,7 +1652,7 @@
       score = 0;
       current = 0;
 	  selectedCategory = category;
-	  
+
       if (category === "Random") {
 			categoryTitle.innerHTML = "Quiz : Aléatoire";
 		  selectedQuestions = Object.values(allQuestions).flat();
@@ -1712,7 +1768,7 @@
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
     }
-	
+
 	function showFinalScore() {
 		  quizDiv.innerHTML = "<h2>Quiz terminé !</h2>";
 		  timerP.textContent = "";
@@ -1740,6 +1796,6 @@
 		}
 
     startMenu();
-  </script>
+    </script>
 </body>
 </html>
