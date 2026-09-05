@@ -9,7 +9,10 @@
   "scripts": {
     "test": "npx playwright test",
     "setup-supabase": "node scripts/setup-supabase.js",
-    "prepare-supabase-config": "node scripts/generate-supabase-config.js"
+    "prepare-supabase-config": "node scripts/generate-supabase-config.js",
+    "check-supabase-config": "node scripts/check-supabase-config.js",
+    "test:supabase-config": "node --test tests/supabase-config.spec.js",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "repository": {
     "type": "git",

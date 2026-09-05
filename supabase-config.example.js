@@ -1,5 +1,6 @@
 // Example configuration for Supabase on a static site (GitHub Pages).
-// Copy to `supabase-config.js` (gitignored) or set values on window before initializing.
+// Generate the versioned supabase-config.js with npm run prepare-supabase-config -- --env production.
+// See docs/SUPABASE_CONFIG_PUBLICATION.md; do not copy this placeholder onto main.
 
 window.SUPABASE_URL = 'https://your-project.supabase.co';
 window.SUPABASE_ANON_KEY = 'your-anon-public-key';

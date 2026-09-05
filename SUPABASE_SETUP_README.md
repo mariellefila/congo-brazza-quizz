@@ -1,5 +1,8 @@
 # 🚀 SUPABASE SETUP — PHASE 1 COMPLETED
 
+Pour la configuration frontend versionnée et publiée sur GitHub Pages, suivre
+[la procédure DEV/PROD](docs/SUPABASE_CONFIG_PUBLICATION.md).
+
 **Status: Server initialized and data imported (7 categories, 356 questions, 3 ads).**
 
 ---
